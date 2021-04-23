@@ -1,0 +1,5 @@
+pwd -- vilken map du befinner dig i
+cd -- change direction ex. ".." för att backa eller cd "src"
+ls -- för att se vilka filer som finns i mappen
+mkdir -- ny mappen
+touch -- ny fil

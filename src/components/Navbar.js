@@ -1,57 +1,75 @@
-import { NavLink } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import React, {useCallback, useState, useEffect} from "react";
 
-function Navbar() {
-    return (    
+import {getUser} from "../utils/user"
 
+// göra en dropdown menu om jag hinner
+
+
+function Navbar(){
+  const [, updateState] = useState()
+  const forceUpdate = useCallback(() => updateState({}), [])
+
+
+  
+  return(
+
+<>
+
+    <div className="px-2 mx-auto bg-gray-200 bg-greycontainer md:px-20">
+    <div className="flex justify-between py-2 overflow-x-auto overflow-y-hidden whitespace-no-wrap">
     
-      <div className="flex flex-wrap items-center justify-between p-5 bg-blue-200">
-
+     <img src="./logo.png" alt="logo" className="h-12 mr-12 rounded-full w-25 md:mr-0"/>
            
+        
+          <div className="flex">
+            <div className="px-3 py-3">
+                <Link to ="./">
+                    Home
+                </Link>
+            </div>
+        
             
-            <NavLink
-              to="/"
-              className="inline-flex items-center px-3 py-6 mr-4 text-4xl font-bold tracking-widest text-grey-100 hover:text-green-800"
-            ></NavLink>
 
-<NavLink
-              to="/"
-              className="inline-flex py-3 my-6 mr-6 rounded items-left text-grey-200 hover:text-green-800"
-            >
-              {" "}
-              About us{" "}
-            </NavLink>
-  
-            <NavLink
-              to="/Cardlist"
-              className="inline-flex items-center py-3 my-6 rounded text-grey-200 hover:text-green-800"
-            >
-              {" "}
-              Our offices{" "}
-            </NavLink>
-  
+            <Link to ="./CardList" className="px-3 py-3">Our spaces
+            </Link>
+
+          
             
-  
-            <NavLink
-              to="/LoginForm"
-              className="inline-flex items-center py-3 my-6 rounded text-grey-200 hover:text-green-800"
-            >
-              {" "}
-              Login{" "}
-            </NavLink>
 
-            <NavLink
-              to="/RegisterForm"
-              className="inline-flex items-center py-3 my-6 rounded text-grey-200 hover:text-green-800"
-            >
-              {" "}
-              Register{" "}
-            </NavLink>
-      </div>
+            {getUser().length === 0 &&
+              
+              <Link to="./LoginForm" className="px-3 py-3">Login
+            </Link>}
 
-    
-    );
-  }
-  
 
-  
-  export default Navbar
+          
+            {getUser().length !== 0 &&
+            <>
+            <Link to ="./userPage" className="px-3 py-3"><a href="/blogs">My Bookings</a>
+            </Link>
+            <Link to ="./AddProduct" className="px-3 py-3">Add products
+            </Link>
+              <Link to="./LoginForm" className="px-3 py-3" onClick={() => {
+                localStorage.removeItem("jwt")
+                forceUpdate()
+                }
+                }>Logout
+            </Link>
+            </>
+            }
+            
+
+        
+            <Link to="./contact" className="py-3 pl-3"><a href="/about-me-bedram-tamang" class="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-full font-hairline">Contact us</a></Link>
+        </div>
+    </div>
+</div>
+
+</>
+
+
+)
+}
+
+export default Navbar

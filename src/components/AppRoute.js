@@ -1,11 +1,14 @@
-import CardList from "./CardList";
-import LoginForm from "./LoginForm";
-import Home from "./Home";
-import Navbar from "./Navbar";
-import RegisterForm from "./RegisterForm";
-import confirmBooking from "./ConfirmBooking"
-import contactUs from "./contact"
-import AddProduct from "./AddProduct"
+import CardList from "./cards/CardList";
+import LoginForm from "./login/LoginForm";
+import Home from "./home/Home";
+import Navbar from "./home/Navbar";
+import RegisterForm from "./register/RegisterForm";
+import confirmBooking from "./booking/ConfirmBooking"
+import contactUs from "./home/contact"
+import AddProduct from "./cards/AddProduct"
+import ResetPassword from "./register/ResetPassword"
+//import UploadFile from "./cards/UploadFile.js"
+import UserPage from "./booking/UserPage"
 //import Calendar from "react-calendar"
 
 
@@ -30,6 +33,8 @@ export default function AppRoute() {
           <Route exact path="/confirmBooking" component={confirmBooking} /> 
           <Route exact path="/contact" component={contactUs} /> 
           <Route exact path="/AddProduct" component={AddProduct} /> 
+          <Route exact path="/ResetPassword" component={ResetPassword} /> 
+          <Route exact path="/UserPage" component={UserPage} />
         </Switch>
 
   

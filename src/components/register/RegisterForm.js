@@ -1,6 +1,7 @@
-import React, {useEffect, useState } from "react";
+import React, { useState } from "react";
 import {useHistory} from "react-router-dom";
 import axios from "axios"
+import ModalConfirm from "../booking/Modal"
 
 
 function RegisterForm() {
@@ -16,6 +17,7 @@ function RegisterForm() {
  // const [loggedIn, SetLoggedIn] = useState(false);
   const [error, setError] = useState("")
   const history = useHistory();
+  const [success, setSuccess] = useState(false)
 
     
 function handleOnChange(e) {
@@ -36,9 +38,10 @@ function handleOnSubmit(e) {
             
             .then( (e)=> { 
               
-              if(e.data.user) 
-              
-              history.push("/LoginForm");
+              if(e.data.user) {
+                setSuccess(true)
+              }
+          
               
             })
             .catch((err)=> {setError(err.response.data.message[0].messages[0].message)}) 
@@ -52,7 +55,7 @@ function handleOnSubmit(e) {
     <div className="flex flex-col h-screen bg-gray-100">
       <div className="grid mx-2 my-20 place-items-center sm:my-auto">
         <div className="w-11/12 p-12 px-6 py-10 bg-white rounded-lg shadow-md sm:w-8/12 md:w-6/12 lg:w-5/12 2xl:w-4/12 sm:px-10 sm:py-6 lg:shadow-lg">
-          <h2 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl">
+          <h2 className="text-2xl text-center text-gray-800 lg:text-4xl">
           Register
           </h2>
 
@@ -61,7 +64,7 @@ function handleOnSubmit(e) {
             Username:
             </label>
 
-            <input className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+            <input className="w-full px-5 py-1 my-2 text-gray-700 bg-gray-100 rounded"
               type="text"
               name="username"
               placeholder="enter"
@@ -75,7 +78,7 @@ function handleOnSubmit(e) {
             </label>
 
             <input
-              className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+              className="w-full px-5 py-1 my-2 text-gray-700 bg-gray-100 rounded"
               type="text"
               placeholder="email"
               name="email"
@@ -87,16 +90,17 @@ function handleOnSubmit(e) {
               for="password"
               className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
             >
-              Password
+              Password:
+            
             </label>
 
             <input
               type="password"
-              placeholder="password"
+         
               name="password"
               value={registerValues.password}
               onChange={handleOnChange}
-              className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+              className="w-full px-5 py-1 my-2 text-gray-700 bg-gray-100 rounded"
           
             />
 
@@ -104,13 +108,19 @@ function handleOnSubmit(e) {
             <button
               //type="submit"
               //value="submit"
-              //onClick = {handleOnSubmit}
-              className="w-full py-3 mt-10 font-medium text-white uppercase bg-gray-800 rounded-sm focus:outline-none hover:bg-gray-700 hover:shadow-none"
-            >
-              Sign up
-            </button>
-          
 
+              // Här vill man kunna använda modalen till en popup som - nu blir de två button....
+              className="mt-8 text-center text-md sm:flex sm:flex-wrap sm:mb-4"
+            >
+              SIGN UP
+
+             
+
+              
+              
+            </button>
+            <ModalConfirm success={success}/>
+            
             {/* <!-- Another Auth Routes --> */}
             <div className="mt-8 text-sm text-center sm:flex sm:flex-wrap sm:mb-4">
             
@@ -120,7 +130,7 @@ function handleOnSubmit(e) {
       </div>
     </div>
 
-  </div>}
+  </div>
 </>
 
 

@@ -10,27 +10,54 @@ function AddProduct(){
         price:0
     }
 
-const [formValues, setFormValues] = useState(initialValues)
+const [formValues, setFormValues] = useState(initialValues);
+const [fileData, setFileData] = useState();
 
 function handleOnChange(e) {
 
     setFormValues({...formValues, [e.target.name]:e.target.value})
 }
 
+function handleOnChangePicture(e) {
 
-function handleOnSubmit(e) {
+  setFileData(e.target.files[0])
+
+  
+}
+
+async function handleOnSubmit(e) {
 
     e.preventDefault();
 
+// post request på produkerna lagrar information
 
-
-    axios.post("http://localhost:1337/products", {
+    await axios.post("http://localhost:1337/products", {
         name:formValues.name, 
         description:formValues.description,
         price : formValues.price
-    }).then(  (res)=> {
+    }).then(  
+    
+      // response från data/postrequest
+      async (res)=> {
         console.log(res.data)
 
+        // krävs för att ladda upp bilden
+      const data = new FormData();
+      data.append("files", fileData)
+
+
+      // referar att bilden ska hamna i product, collection
+      data.append("ref", "product")
+      data.append("refId", res.data.id)
+      
+      //field är filnamn i strapi
+      data.append("field", "img")
+
+      await axios.post("http://localhost:1337/upload", data)
+      .then((image)=> console.log(image))
+      .catch ((error) => console.log(error))
+
+         
     }).catch(  (err)=> {
         console.log(err)
  })
@@ -47,7 +74,7 @@ return(
 
     <>
 
-<div class="flex flex-col h-screen bg-gray-100">
+<div className="flex flex-col h-screen bg-gray-100">
       <div className="grid mx-2 my-20 place-items-center sm:my-auto">
         <div className="w-11/12 p-12 px-6 py-10 bg-white rounded-lg shadow-md sm:w-8/12 md:w-6/12 lg:w-5/12 2xl:w-4/12 sm:px-10 sm:py-6 lg:shadow-lg">
       
@@ -57,7 +84,7 @@ return(
             {/* <!-- Email Input --> */}
 
             <label
-              for="product"
+              htmlFor="product"
               className="block text-xs font-semibold text-gray-600 uppercase"
             >
               Product Name
@@ -68,14 +95,14 @@ return(
               onChange={handleOnChange}
               value={formValues.name}
               placeholder="productname"
-              class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+              className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
               required
          
             />
 
       
             <label
-                for="product"
+                htmlFor="product"
                 className="block text-xs font-semibold text-gray-600 uppercase"
                 >
                 Product Description
@@ -86,13 +113,29 @@ return(
                 onChange={handleOnChange}
                 value={formValues.description}
                 placeholder="description"
-                class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+                className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
                 required
             
             />
 
+<label
+                htmlFor="product"
+                className="block text-xs font-semibold text-gray-600 uppercase"
+                >
+                Product Location
+                </label>
+                <input
+                type="text"
+                name="location"
+                onChange={handleOnChange}
+                value={formValues.location}
+                placeholder="location"
+                className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+                required
+            
+            />
                 <label
-                for="Product Price"
+                htmlFor="Product Price"
                 className="block text-xs font-semibold text-gray-600 uppercase"
                 >
                 Product price
@@ -109,7 +152,7 @@ return(
             />
 
 
-
+              <input type="file" name="file" onChange={handleOnChangePicture}/>
             
             {/* <!-- Auth Buttton --> */}
             <button

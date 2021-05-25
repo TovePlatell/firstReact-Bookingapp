@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import {useHistory} from "react-router-dom";
 import axios from "axios"
 import ModalConfirm from "../booking/Modal"
 
@@ -13,10 +12,7 @@ function RegisterForm() {
   }
 
   const [registerValues, setRegisterValues] = useState(intitialValue)
-  const [username, setUsername] = useState("");
- // const [loggedIn, SetLoggedIn] = useState(false);
   const [error, setError] = useState("")
-  const history = useHistory();
   const [success, setSuccess] = useState(false)
 
     
@@ -26,9 +22,7 @@ function handleOnChange(e) {
 
 function handleOnSubmit(e) {
        e.preventDefault();
-
-
-       
+  
        
       axios.post('http://localhost:1337/auth/local/register', {
                 username: registerValues.username,
@@ -39,7 +33,7 @@ function handleOnSubmit(e) {
             .then( (e)=> { 
               
               if(e.data.user) {
-                setSuccess(true)
+                setSuccess("register")
               }
           
               
@@ -88,15 +82,12 @@ function handleOnSubmit(e) {
 
             <label
               for="password"
-              className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
-            >
+              className="block mt-2 text-xs font-semibold text-gray-600 uppercase" >
               Password:
-            
             </label>
 
             <input
               type="password"
-         
               name="password"
               value={registerValues.password}
               onChange={handleOnChange}
@@ -105,23 +96,13 @@ function handleOnSubmit(e) {
             />
 
           
-            <button
-              //type="submit"
-              //value="submit"
-
-              // Här vill man kunna använda modalen till en popup som - nu blir de två button....
-              className="mt-8 text-center text-md sm:flex sm:flex-wrap sm:mb-4"
-            >
+            <button className="mt-8 text-center text-md sm:flex sm:flex-wrap sm:mb-4">
               SIGN UP
-
-             
-
-              
-              
             </button>
-            <ModalConfirm success={success}/>
+
             
-            {/* <!-- Another Auth Routes --> */}
+            <ModalConfirm whichOne={success}/>
+            
             <div className="mt-8 text-sm text-center sm:flex sm:flex-wrap sm:mb-4">
             
             </div>

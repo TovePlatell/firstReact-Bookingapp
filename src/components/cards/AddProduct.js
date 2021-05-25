@@ -12,6 +12,7 @@ function AddProduct(){
 
 const [formValues, setFormValues] = useState(initialValues);
 const [fileData, setFileData] = useState();
+const [message, setMessage]= useState("")
 
 function handleOnChange(e) {
 
@@ -45,7 +46,7 @@ async function handleOnSubmit(e) {
       const data = new FormData();
       data.append("files", fileData)
 
-
+        
       // referar att bilden ska hamna i product, collection
       data.append("ref", "product")
       data.append("refId", res.data.id)
@@ -56,23 +57,26 @@ async function handleOnSubmit(e) {
       await axios.post("http://localhost:1337/upload", data)
       .then((image)=> console.log(image))
       .catch ((error) => console.log(error))
+      
+      setMessage("Product has been added")
 
-         
+         console.log("product", setMessage)
     }).catch(  (err)=> {
         console.log(err)
+        
  })
 
 
+        
 }
-
-
-
 
 
 return(
 
 
     <>
+
+<p className="text-lg font-bold text-center text-grey">Add products</p>
 
 <div className="flex flex-col h-screen bg-gray-100">
       <div className="grid mx-2 my-20 place-items-center sm:my-auto">
@@ -82,7 +86,7 @@ return(
      
           <form className="mt-10" onSubmit={handleOnSubmit} method="POST">
             {/* <!-- Email Input --> */}
-
+            <h1 className="pt-3 pb-6 ml-64 text-green-600">{message}</h1>
             <label
               htmlFor="product"
               className="block text-xs font-semibold text-gray-600 uppercase"
@@ -152,14 +156,14 @@ return(
             />
 
 
-              <input type="file" name="file" onChange={handleOnChangePicture}/>
+              <input className="mt-4 mb-4" type="file" name="file" onChange={handleOnChangePicture}/>
             
             {/* <!-- Auth Buttton --> */}
             <button
               type="submit"
-              className="w-full py-3 mt-10 font-medium text-white uppercase bg-gray-800 rounded-sm focus:outline-none hover:bg-gray-700 hover:shadow-none"
+              className="mt-8 text-center text-md sm:flex sm:flex-wrap sm:mb-4"
             >
-              Add Product
+              ADD
             </button>
 
              

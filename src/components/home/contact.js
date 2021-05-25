@@ -69,7 +69,7 @@ export default function contactUs() {
               id=""
               cols="30"
               rows="10"
-              placdeholder="Your message"
+              placeholder="Your message"
               name="message"
             ></textarea>
      

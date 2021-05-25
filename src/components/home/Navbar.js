@@ -1,16 +1,12 @@
 import { Link} from "react-router-dom";
 import React, {useCallback, useState} from "react";
 import {getUser} from "../utils/user"
-import SearchBar from "./SearchBar"
 
-// göra en dropdown menu om jag hinner
-// går ej att klicka på navbaren om du har directat till en component
 
 
 function Navbar(){
   const [, updateState] = useState()
   const forceUpdate = useCallback(() => updateState({}), [])
-
 
   return(
 
@@ -29,20 +25,24 @@ function Navbar(){
             <Link to ="./CardList" className="px-3 py-8">Our offices
             </Link>
 
-            
-
+          
           
 
             {getUser().length === 0 &&
               
               <Link to="./LoginForm" className="px-3 py-8">Login
-            </Link>}
+            </Link> }
 
 
           
-            {getUser().length !== 0 &&
+            {getUser().length !== 0   &&
+            
             <>
-            <Link to ="./userPage" className="px-3 py-8"> My Bookings 
+
+          
+              
+              
+            <Link to ="./MyBookings" className="px-3 py-8"> My Bookings 
             </Link>
             <Link to ="./AddProduct" className="px-3 py-8">Add products
             </Link>
@@ -69,5 +69,7 @@ function Navbar(){
 
 )
 }
+
+
 
 export default Navbar

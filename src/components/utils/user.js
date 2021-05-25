@@ -3,12 +3,11 @@ export const setUser = (value) => {
 }
 
 export const getUser = () => {
-    try {
-        const jwt = localStorage.getItem("jwt")
-        if(jwt) {
-            return jwt
-        }
-    } catch(err) {}
-    return []
-    
-}
+  try {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      return jwt;
+    }
+  } catch (err) {}
+  return [];
+};

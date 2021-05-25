@@ -12,7 +12,7 @@ function  API () {
          const fetchData = async()=> {
 
             try {
-         const response=   await axios.get("https://jsonplaceholder.typicode.com/todos")
+         const response =   await axios.get("http://localhost:1337/Confirmbooking?users_permissions_user.id=29")
           // axios är ett fetch bibliotek , http get, post, update , delete  
           console.log(response.data)
           const res = response.data 

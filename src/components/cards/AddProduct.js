@@ -32,7 +32,7 @@ async function handleOnSubmit(e) {
 
 // post request på produkerna lagrar information
 
-    await axios.post("http://localhost:1337/products", {
+    await axios.post("https://bookingtove.herokuapp.com/products", {
         name:formValues.name, 
         description:formValues.description,
         price : formValues.price
@@ -54,7 +54,7 @@ async function handleOnSubmit(e) {
       //field är filnamn i strapi
       data.append("field", "img")
 
-      await axios.post("http://localhost:1337/upload", data)
+      await axios.post("https://bookingtove.herokuapp.com/upload", data)
       .then((image)=> console.log(image))
       .catch ((error) => console.log(error))
       

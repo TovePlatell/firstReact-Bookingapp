@@ -24,7 +24,7 @@ function UploadFile() {
         //data.append("files", fileData)
         //console.log(data)
        // data 
-       const res = axios.post("http://localhost:1337/upload",  data)
+       const res = axios.post("https://bookingtove.herokuapp.com/upload",  data)
         console.log(res)
     }
 

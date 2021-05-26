@@ -12,7 +12,7 @@ function MyBookings() {
 
       const res = await axios.get(
           
-        `http://localhost:1337/bookings?_where[users_permissions_user]=${userId}`
+        `https://bookingtove.herokuapp.com/bookings?_where[users_permissions_user]=${userId}`
       );
 
       console.log(res.data);
@@ -28,7 +28,7 @@ function MyBookings() {
   const handleDelete = (e) => {
       const {value} = e.target;
       
-      axios.delete(`http://localhost:1337/bookings/${value}`)
+      axios.delete(`https://bookingtove.herokuapp.com/bookings/${value}`)
   }
 
   return (

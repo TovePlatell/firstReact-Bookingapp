@@ -48,7 +48,7 @@ function Card({ productName, productId, description, location, price, image}) {
    
 //     e.preventDefault();
    
-//    const response = await axios.post("http://localhost:1337/confirmbookings",  {
+//    const response = await axios.post("https://bookingtove.herokuapp.com/confirmbookings",  {
 //         name:userInfo.name,
 //        // email:userInfo.email,
 //        // date:userInfo.date,
@@ -65,15 +65,19 @@ function Card({ productName, productId, description, location, price, image}) {
    
   return (
 
+
+   
+
 <>
 
 
+    
  <div className="container flex overflow-hidden rounded-lg shadow mx-mx-auto -w-md mx-h-full xl:max-w-3xl">
  
   
     
         <div className="relative hidden h-full xl:block xl:w-1/2">
-        <img className="absolute object-cover w-full h-auto" src= {"http://localhost:1337" + image} alt="some pic from database"/>
+        <img className="absolute object-cover w-full h-auto" src= {"https://bookingtove.herokuapp.com" + image} alt="some pic from database"/>
         </div>
         
         
@@ -113,7 +117,7 @@ function Card({ productName, productId, description, location, price, image}) {
                 isClearable
                 showYearDropdown
                 scrollableMonthYearDropdown
-                className="border-4 border-double  border-light-blue-500"
+                className="border-4 border-double border-light-blue-500"
               
               /> 
              

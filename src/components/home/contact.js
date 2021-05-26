@@ -1,6 +1,9 @@
 import emailjs from "emailjs-com";
+import React, {useState} from "react"
 
-export default function contactUs() {
+export default function ContactUs() {
+
+  const [message, setMessage]= useState("")
     
   function sendEmail(e) {
 
@@ -13,6 +16,8 @@ export default function contactUs() {
           console.log(error.text);
       });
       e.target.reset()
+
+      setMessage("Email has been sent")
   }
 
   return (
@@ -20,6 +25,8 @@ export default function contactUs() {
     <div className="flex flex-col h-screen bg-gray-100">
       <div className="grid mx-2 my-20 place-items-center sm:my-auto">
         <div className="w-11/12 p-12 px-6 py-10 bg-white rounded-lg shadow-md sm:w-8/12 md:w-6/12 lg:w-5/12 2xl:w-4/12 sm:px-10 sm:py-6 lg:shadow-lg">
+
+        <h1 className="pt-3 pb-6 text-green-600 ml-52">{message}</h1>
         <h2 className="text-3xl font-semibold text-center text-gray-800 lg:text-4xl">
           Contact us
           </h2>

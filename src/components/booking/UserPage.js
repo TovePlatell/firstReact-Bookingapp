@@ -57,7 +57,7 @@ function UserPage() {
   async function onSubmit(e) {
     e.preventDefault();
 
-    const response = await axios.post("http://localhost:1337/bookings", {
+    const response = await axios.post("https://bookingtove.herokuapp.com/bookings", {
       name: formValues.name,
       phonenumber: formValues.phonenumber,
       product: query.get("id"),

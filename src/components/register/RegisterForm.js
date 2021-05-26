@@ -24,7 +24,7 @@ function handleOnSubmit(e) {
        e.preventDefault();
   
        
-      axios.post('http://localhost:1337/auth/local/register', {
+      axios.post('https://bookingtove.herokuapp.com/auth/local/register', {
                 username: registerValues.username,
                 email: registerValues.email,
                 password: registerValues.password,

@@ -16,7 +16,7 @@ function Checkout() {
     useEffect (()=>{
         const fetchBookingID=async()=> {
         
-        const response = await axios.get(`http://localhost:1337/bookings/${localStorage.getItem("BookingID")}`  );
+        const response = await axios.get(`https://bookingtove.herokuapp.com/bookings/${localStorage.getItem("BookingID")}`  );
         
         
         

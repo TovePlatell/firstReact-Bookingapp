@@ -18,7 +18,7 @@ function CardList() {
       setWaiting(true);
       //setLoading(true)
       const response = await axios.get(
-        `http://localhost:1337/products?_limit=${loading}`
+        `https://bookingtove.herokuapp.com/products?_limit=${loading}`
       );
      
       console.log(response.data.img);
@@ -60,8 +60,14 @@ function CardList() {
  
   
   return (
+
+    
+ 
     <div className="container grid items-center w-full text-center">
+    
    <div className="grid py-10 ml-10 place-items-center">
+
+   
      <input className="my-2 ml-56 border-4 border-double border-light-blue-500" type="text" placeholder="search your location" onChange={e => setSearch(e.target.value)}
         />   
         </div>

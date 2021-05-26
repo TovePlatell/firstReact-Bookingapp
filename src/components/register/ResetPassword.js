@@ -8,7 +8,7 @@ function ResetPassword() {
         
 
         axios
-        .post(`http://localhost:1337/auth/send-email-confirmation`, {
+        .post(`https://bookingtove.herokuapp.com/auth/send-email-confirmation`, {
           email: 'toveplatell@gmail.com', // user's email
         })
         .then(response => {

@@ -71,7 +71,7 @@ setUsername({})
   <div className="h-screen font-sans bg-cover login">
 
       <div className="container flex items-center justify-center flex-1 h-full mx-auto">
-        <div className="max-w-lg ww-full">
+        <div className="w-full max-w-lg">
         <div class="leading-loose">
         
         
@@ -80,7 +80,7 @@ setUsername({})
           <h1 className="pt-3 text-red-600">{errors}</h1>
           <p class="text-grey  text-center text-lg font-bold">LOGIN</p>
             
-             <div class="">
+             <div className="">
             <label
               htmlFor="email"
               className="block text-sm text-white"
@@ -119,7 +119,7 @@ setUsername({})
             />
             </div>
             
-       <div class="mt-4 items-center flex justify-between">
+       <div className="flex items-center justify-between mt-4">
             <button
               type="submit"
               className="mt-8 text-center text-md sm:flex sm:flex-wrap sm:mb-4">

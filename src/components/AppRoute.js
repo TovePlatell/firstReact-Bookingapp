@@ -30,7 +30,7 @@ export default function AppRoute() {
           <Route exact path="/cardlist" component={CardList} />
           <Route exact path="/LoginForm" component={LoginForm} />
           <Route exact path="/RegisterForm" component={RegisterForm} />
-          <Route path="/Contact" component={ContactUs} /> 
+          <Route path="/contact" component={ContactUs} /> 
           <Route exact path="/AddProduct" component={AddProduct} /> 
           <Route exact path="/API" component={API} /> 
           <Route exact path="/UserPage" component={UserPage} /> 

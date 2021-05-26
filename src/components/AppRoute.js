@@ -1,6 +1,6 @@
 import Home from "./home/Home";
 import Navbar from "./home/Navbar";
-import ContactUs from "./home/a"
+import ContactUs from "./home/ContactUs"
 
 import RegisterForm from "./register/RegisterForm";
 import LoginForm from "./login/LoginForm";

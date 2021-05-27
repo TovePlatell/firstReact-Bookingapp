@@ -54,7 +54,7 @@ setUsername({})
 
   return (
     <>
-<body>
+
   
 <div className="login">
 
@@ -72,13 +72,13 @@ setUsername({})
 
       <div className="container flex items-center justify-center flex-1 h-full mx-auto">
         <div className="w-full max-w-lg">
-        <div class="leading-loose">
+        <div className="leading-loose">
         
         
          
           <form className="max-w-sm p-10 m-4 bg-white bg-opacity-25 rounded shadow-xl" onSubmit={handleOnSubmit} method="POST">
           <h1 className="pt-3 text-red-600">{errors}</h1>
-          <p class="text-grey  text-center text-lg font-bold">LOGIN</p>
+          <p className="text-lg font-bold text-center text-grey">LOGIN</p>
             
              <div className="">
             <label
@@ -101,7 +101,7 @@ setUsername({})
               placeholder="email"
             />
              </div>
-             <div class="mt-2">
+             <div className="mt-2">
             <label
               htmlFor="password"
               className="block text-sm text-white"
@@ -148,7 +148,6 @@ setUsername({})
 
 </div>
  
- </body>
 
 </>
  

@@ -1,7 +1,7 @@
 import Modal from "react-modal";
 
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 /* import ConfirmBooking from "./ConfirmBooking" */
 
@@ -59,6 +59,18 @@ export default function ModalConfirm({ whichOne }) {
     history.push("./MyBookings")
     window.location.reload()
   }
+
+  function handleRegister(){
+
+    history.push("./.")
+    window.location.reload()
+  }
+
+  function handleRegister2(){
+
+    history.push("./LoginForm")
+    window.location.reload()
+  }
   return (
     <>
       
@@ -70,9 +82,7 @@ export default function ModalConfirm({ whichOne }) {
           contentLabel="Example Modal"
           ariaHideApp={false}
         >
-        
-          <button onClick={closeModal}>(x)</button>
-          <div>welcome</div>
+      
           <form onSubmit={onHandleSubmit}>
             <input
               type="text"
@@ -92,7 +102,15 @@ export default function ModalConfirm({ whichOne }) {
               value={formValues.password}
               onChange={onHandleChange}
             />
-            <Link to="/Loginform">Go to Login</Link>
+
+          <button onClick={handleRegister} className="px-4 py-2 mr-2 text-white bg-gray-800 hover:bg-gray-600">Go to HomePage
+          
+          </button>
+          
+          <button onClick={handleRegister2} className="px-4 py-2 text-white bg-gray-800 hover:bg-gray-600">Go to Login</button>
+          
+           
+            
           </form>
         </Modal>
       )}

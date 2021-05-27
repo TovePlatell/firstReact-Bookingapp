@@ -52,10 +52,10 @@ function handleOnSubmit(e) {
         <div className="leading-loose">
         
           
-
+      
           <form className="max-w-sm p-10 m-4 bg-white bg-opacity-25 rounded shadow-xl" onSubmit={handleOnSubmit}>
 
-          <p class="text-grey  text-center text-lg font-bold">REGISTER</p>
+          <p className="text-lg font-bold text-center text-grey">REGISTER</p>
           
           <div className="">
             <label className="block text-sm text-white">
@@ -87,7 +87,7 @@ function handleOnSubmit(e) {
             />
 
             <label
-              for="password"
+              htmlFor="password"
               className="block text-sm text-white" >
               Password:
             </label>

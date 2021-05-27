@@ -15,8 +15,8 @@ function MyBookings() {
         `https://bookingtove.herokuapp.com/bookings?_where[users_permissions_user]=${userId}`
       );
 
-      console.log(res.data);
-      console.log(res.data.product);
+      //console.log(res.data);
+      //console.log(res.data.product);
 
       setMyBookings(res.data);
       
@@ -26,9 +26,11 @@ function MyBookings() {
   }, []);
 
   const handleDelete = (e) => {
+    
       const {value} = e.target;
       
       axios.delete(`https://bookingtove.herokuapp.com/bookings/${value}`)
+  
   }
 
   return (

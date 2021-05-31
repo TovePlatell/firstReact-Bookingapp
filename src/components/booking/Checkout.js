@@ -1,6 +1,32 @@
 import  {React, useState, useEffect} from 'react'
 import axios from "axios";
 import {Link} from "react-router-dom"
+import { loadStripe } from '@stripe/stripe-js';
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
+const stripePromise = loadStripe('pk_test_51Ix6MXDhSyK2k5ddZxfXQGR3UprqoTnAewpFFfoCtMf6Zm5nFtpI4TgZmd994naMvDbPHWZcyjap6nzFjWqtNVbY001eiOdu9C');
+
+const handleClick = async (event) => {
+  // Get Stripe.js instance
+  const stripe = await stripePromise;
+
+  // Call your backend to create the Checkout Session
+ const response = await axios.post("http://localhost:4242/create-checkout-session")
+  //{ method: 'POST' });
+
+  const session = response.data.id
+
+  // When the customer clicks on the button, redirect them to Checkout.
+  const result = await stripe.redirectToCheckout({
+    sessionId: session,
+  });
+
+  if (result.error) {
+    // If `redirectToCheckout` fails due to a browser or network
+    // error, display the localized error message to your customer
+    // using `result.error.message`.
+  }
+};
 
 
 
@@ -62,7 +88,10 @@ return (
   <h3 className = "mb-4 text-center text-1xl"><strong>Price:</strong>  {products.price} </h3>
   
   </div>
+  <button role="link" onClick={handleClick}>PAY NOW</button>
   </div>
+
+ 
   
    
 

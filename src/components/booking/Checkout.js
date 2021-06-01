@@ -11,7 +11,7 @@ const handleClick = async (event) => {
   const stripe = await stripePromise;
 
   // Call your backend to create the Checkout Session
- const response = await axios.post("https://60af7e8a98d39b0007b90a8b--laughing-poincare-a584b9.netlify.app/create-checkout-session")
+ const response = await axios.post("https://bookingtove.herokuapp.com/create-checkout-session")
   //{ method: 'POST' });
 
   const session = response.data.id

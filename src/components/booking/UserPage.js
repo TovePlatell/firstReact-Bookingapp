@@ -111,7 +111,7 @@ function UserPage() {
                 type="submit"
                 className="px-10 py-3 pl-6 mt-8 ml-12 text-xs text-white uppercase bg-gray-500 rounded shadow mmx-auto hover:bg-gray-700 focus:shadow-outline focus:outline-none"
               >
-                Checkout
+                Continue for checkout
               </button>
             </div>
           </div>

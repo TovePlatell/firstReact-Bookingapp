@@ -27,7 +27,7 @@ app.post('/create-checkout-session', async (req, res) => {
       },
     ],
     mode: 'payment',
-    success_url: 'http://localhost:4242/success.html',
+    success_url: 'https://60af7e8a98d39b0007b90a8b--laughing-poincare-a584b9.netlify.app/success.html',
     cancel_url: 'http://localhost:4242/cancel.html',
   });
 

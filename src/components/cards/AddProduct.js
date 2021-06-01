@@ -13,6 +13,7 @@ function AddProduct(){
 const [formValues, setFormValues] = useState(initialValues);
 const [fileData, setFileData] = useState();
 const [message, setMessage]= useState("")
+//const admin = localStorage.getItem("role")
 
 function handleOnChange(e) {
 
@@ -75,6 +76,8 @@ return(
 
 
     <>
+
+    
 
 <p className="text-lg font-bold text-center text-grey">Add products</p>
 

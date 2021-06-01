@@ -68,32 +68,39 @@ return (
       <> 
       
  <Link to = "./MyBookings">
-  <button className="py-3 mt-10 ml-10 text-white uppercase bg-gray-400 rounded-md font-small w-sm focus:outline-none hover:bg-gray-400 hover:shadow-none" type="submit">Go to my bookings </button>
+  <button className="py-3 mt-10 ml-10 text-black rounded-md font-xs w-sm focus:outline-none " type="submit">Go to my bookings </button>
   </Link>
       
-<div className="grid w-auto gap-1 grid-row-1 place-items-center">
+<div className="container flex h-full max-w-md mx-auto mt-6 mb-6 overflow-hidden bg-white rounded-lg shadow xl:max-w-3xl">
 
-<div className="px-24 py-24 my-24 rounded-lg shadow-lg ">
-  <h1 className = "mb-4 text-2xl text-center">Invoice:</h1>
-  <h3 className = "mb-4 text-center text-1xl"><strong>Name:</strong> {bookings.name} </h3>
 
-  <h3 className = "mb-4 text-center text-1xl"><strong>Phone:</strong>  {bookings.phonenumber} </h3>
+
+<div className="w-full p-8 xl:w-1/2">
+             
+             <form action="">
+
+
+  <h1 className = "text-2xl font-bold">Invoice:</h1>
+  <h3 className = "block mb-2 text-sm font-semibold text-gray-700"><strong>Name:</strong> {bookings.name} </h3>
+  <h3 className = "block mb-2 text-sm font-semibold text-gray-700"><strong>Phone:</strong>  {bookings.phonenumber} </h3>
  
+
+
+  <h1 className = "mt-10 text-2xl font-bold">Order:</h1>
+
+  <h3 className = "block mb-2 text-sm font-semibold text-gray-700"><strong>Name:</strong>  {products.name} </h3>
+  <h3 className = "block mb-2 text-sm font-semibold text-gray-700"><strong>Description:</strong>  {products.description} </h3>
+  <h3 className = "block mb-2 text-sm font-semibold text-gray-700"><strong>Price:</strong>  {products.price} </h3>
+  
+ 
+  
+  
+  <button className="py-3 mt-10 text-white uppercase bg-gray-400 rounded-md ml-36 font-small w-sm focus:outline-none hover:bg-gray-400 hover:shadow-none" role="link" onClick={handleClick}>PAY NOW</button>
+
+ 
+      </form>
+    </div>
 </div>
-<div className="px-20 py-20 my-12 rounded-lg shadow-lg">
-  <h1 className = "mb-8 text-2xl text-center">Order:</h1>
-
-  <h3 className = "mb-4 text-center text-1xl"><strong>Name:</strong>  {products.name} </h3>
-  <h3 className = "mb-4 text-center text-1xl"><strong>Description:</strong>  {products.description} </h3>
-  <h3 className = "mb-4 text-center text-1xl"><strong>Price:</strong>  {products.price} </h3>
-  
-  </div>
-  <button role="link" onClick={handleClick}>PAY NOW</button>
-  </div>
-
- 
-  
-   
 
 
   

@@ -8,6 +8,9 @@ const stripePromise = loadStripe('pk_test_51Ix6MXDhSyK2k5ddZxfXQGR3UprqoTnAewpFF
 
 const handleClick = async (event) => {
 
+event.preventDefault();
+console.log("hejhej")
+
 
   // Get Stripe.js instance
   const stripe = await stripePromise;
@@ -55,7 +58,7 @@ function Checkout() {
        setProducts(response.data.product)
 
        console.log("produkter",response.data)
-       console.log("button",handleClick)
+       console.log(event)
         
        
     

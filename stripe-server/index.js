@@ -27,12 +27,15 @@ app.post('/create-checkout-session', async (req, res) => {
       },
     ],
     mode: 'payment',
-    success_url: 'https://60af7e8a98d39b0007b90a8b--laughing-poincare-a584b9.netlify.app/success.html',
+    success_url: 'https://60b60d696fd09100073040d3--laughing-poincare-a584b9.netlify.app/success.html',
     cancel_url: 'http://localhost:4242/cancel.html',
   });
 
   res.json({ id: session.id });
 });
+
+const port = process.env.PORT || 3000
+app.listen(port);
 
 //app.listen(4242, () => console.log(`Listening on port ${4242}!`));
 

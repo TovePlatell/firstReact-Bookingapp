@@ -7,6 +7,8 @@ import { loadStripe } from '@stripe/stripe-js';
 const stripePromise = loadStripe('pk_test_51Ix6MXDhSyK2k5ddZxfXQGR3UprqoTnAewpFFfoCtMf6Zm5nFtpI4TgZmd994naMvDbPHWZcyjap6nzFjWqtNVbY001eiOdu9C');
 
 const handleClick = async (event) => {
+
+
   // Get Stripe.js instance
   const stripe = await stripePromise;
 
@@ -20,6 +22,8 @@ const handleClick = async (event) => {
   const result = await stripe.redirectToCheckout({
     sessionId: session,
   });
+
+  //hejhej
 
   if (result.error) {
     // If `redirectToCheckout` fails due to a browser or network
@@ -51,6 +55,7 @@ function Checkout() {
        setProducts(response.data.product)
 
        console.log("produkter",response.data)
+       console.log("button",handleClick)
         
        
     

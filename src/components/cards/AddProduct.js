@@ -1,5 +1,6 @@
 import axios from "axios"
 import React, {useState} from "react"
+import {Link} from "react-router-dom"
 
 function AddProduct(){
 
@@ -13,7 +14,7 @@ function AddProduct(){
 const [formValues, setFormValues] = useState(initialValues);
 const [fileData, setFileData] = useState();
 const [message, setMessage]= useState("")
-//const admin = localStorage.getItem("role")
+const admin = localStorage.getItem("role")
 
 function handleOnChange(e) {
 
@@ -33,7 +34,7 @@ async function handleOnSubmit(e) {
 
 // post request på produkerna lagrar information
 
-    await axios.post("https://bookingtove.herokuapp.com/products", {
+    await axios.post("http://localhost:1337/products", {
         name:formValues.name, 
         description:formValues.description,
         price : formValues.price
@@ -55,7 +56,7 @@ async function handleOnSubmit(e) {
       //field är filnamn i strapi
       data.append("field", "img")
 
-      await axios.post("https://bookingtove.herokuapp.com/upload", data)
+      await axios.post("http://localhost:1337/upload", data)
       .then((image)=> console.log(image))
       .catch ((error) => console.log(error))
       
@@ -78,7 +79,8 @@ return(
     <>
 
     
-
+{admin === "admin" ? (
+  <>
 <p className="text-lg font-bold text-center text-grey">Add products</p>
 
 <div className="flex flex-col h-screen bg-gray-100">
@@ -173,8 +175,19 @@ return(
           </form>
         </div>
       </div>
+     
     </div>
+    </>
 
+    ) : (
+
+      <div>
+        <Link to = "./"> 
+        You´re are not admin</Link>
+      </div>
+      
+    )
+}
 
 
     </>

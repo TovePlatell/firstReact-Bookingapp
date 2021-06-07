@@ -34,7 +34,7 @@ export default function AppRoute() {
           <Route exact path="/AddProduct" component={AddProduct} /> 
           <Route exact path="/API" component={API} /> 
           <Route exact path="/UserPage" component={UserPage} /> 
-          <Route exact path="/Checkout" component={Checkout} /> 
+          <Route exact path="/Paynow" component={Checkout} /> 
           <Route exact path="/MyBookings" component={MyBookings} /> 
          
           

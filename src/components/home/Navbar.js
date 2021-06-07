@@ -48,6 +48,7 @@ function Navbar(){
             </Link>
               <Link to="./LoginForm" className="px-3 py-8" onClick={() => {
                 localStorage.removeItem("jwt")
+                localStorage.removeItem("role")
                 forceUpdate()
                 }
                 }>Logout

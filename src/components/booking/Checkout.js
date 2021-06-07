@@ -4,28 +4,36 @@ import {Link} from "react-router-dom"
 import { loadStripe } from '@stripe/stripe-js';
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
-const stripePromise = loadStripe('pk_test_51Ix6MXDhSyK2k5ddZxfXQGR3UprqoTnAewpFFfoCtMf6Zm5nFtpI4TgZmd994naMvDbPHWZcyjap6nzFjWqtNVbY001eiOdu9C');
+const stripePromise = loadStripe("pk_test_51Ix6MXDhSyK2k5ddZxfXQGR3UprqoTnAewpFFfoCtMf6Zm5nFtpI4TgZmd994naMvDbPHWZcyjap6nzFjWqtNVbY001eiOdu9C");
+
+function Checkout() {
+
+  const [bookings, setBookings] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  console.log("product-info-checkout", products)
+
 
 const handleClick = async (event) => {
+  event.preventDefault()
 
-event.preventDefault();
-console.log("hejhej")
-
+const price = products.price
+const name = products.name
 
   // Get Stripe.js instance
   const stripe = await stripePromise;
 
   // Call your backend to create the Checkout Session
- const response = await axios.post("https://bookingtove.herokuapp.com/create-checkout-session")
+ const response = await axios.post("http://localhost:4242/create-checkout-session", {name:name, price:price})
   //{ method: 'POST' });
-
+console.log(response.data.id)
   const session = response.data.id
 
   // When the customer clicks on the button, redirect them to Checkout.
   const result = await stripe.redirectToCheckout({
     sessionId: session,
   });
-
+ 
   //hejhej
 
   if (result.error) {
@@ -33,32 +41,23 @@ console.log("hejhej")
     // error, display the localized error message to your customer
     // using `result.error.message`.
   }
-};
 
+}
 
-
-
-
-function Checkout() {
-
-    const [bookings, setBookings] = useState([]);
-    const [products, setProducts] = useState([]);
-    
+  
     
 
     useEffect (()=>{
         const fetchBookingID=async()=> {
         
-        const response = await axios.get(`https://bookingtove.herokuapp.com/bookings/${localStorage.getItem("BookingID")}`  );
-        
-        
+        const response = await axios.get(`http://localhost:1337/bookings/${localStorage.getItem("BookingID")}`  );
         
 
        setBookings(response.data)
        setProducts(response.data.product)
 
        console.log("produkter",response.data)
-       console.log(event)
+
         
        
     
@@ -67,9 +66,10 @@ function Checkout() {
          fetchBookingID();
          
         
+        
         },  [])
       
-
+      
 return (
   
        
@@ -103,7 +103,7 @@ return (
  
   
   
-  <button className="py-3 mt-10 text-white uppercase bg-gray-400 rounded-md ml-36 font-small w-sm focus:outline-none hover:bg-gray-400 hover:shadow-none" role="link" onClick={handleClick}>PAY NOW</button>
+  <button className="py-3 mt-10 text-white uppercase bg-gray-400 rounded-md ml-36 font-small w-sm focus:outline-none hover:bg-gray-400 hover:shadow-none" role="link" onClick={handleClick} >PAY NOW</button>
 
  
       </form>
@@ -115,8 +115,12 @@ return (
  
   
         </>
+
     )
 
+
+
 }
+
 
 export default Checkout;

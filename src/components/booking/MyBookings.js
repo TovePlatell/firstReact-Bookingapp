@@ -12,7 +12,7 @@ function MyBookings() {
 
       const res = await axios.get(
           
-        `https://bookingtove.herokuapp.com/bookings?_where[users_permissions_user]=${userId}`
+        `http://localhost:1337/bookings?_where[users_permissions_user]=${userId}`
       );
 
       //console.log(res.data);
@@ -29,7 +29,7 @@ function MyBookings() {
     
       const {value} = e.target;
       
-      axios.delete(`https://bookingtove.herokuapp.com/bookings/${value}`)
+      axios.delete(`http://localhost:1337/bookings/${value}`)
   
   }
 
@@ -86,6 +86,8 @@ function MyBookings() {
 
 
                     <button value={booking.id} onClick={handleDelete} className="px-3 py-2 mt-6 text-xs bg-gray-300 rounded text-grey font-xs"> Cancel this booking</button>
+
+                    <button value={booking.id} onClick={handleDelete} className="px-3 py-2 pl-4 mt-6 text-xs bg-gray-300 rounded text-grey font-xs"> change this booking</button>
 
                     </form>
                   </div>

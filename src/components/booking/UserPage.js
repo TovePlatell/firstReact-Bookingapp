@@ -57,7 +57,7 @@ function UserPage() {
   async function onSubmit(e) {
     e.preventDefault();
 
-    const response = await axios.post("https://bookingtove.herokuapp.com/bookings", {
+    const response = await axios.post("http://localhost:1337/bookings", {
       name: formValues.name,
       phonenumber: formValues.phonenumber,
       product: query.get("id"),
@@ -66,7 +66,7 @@ function UserPage() {
 
     localStorage.setItem("BookingID", response.data.id);
 
-    history.push("/Checkout");
+    history.push("/Paynow");
   }
 
   function onChange(e) {

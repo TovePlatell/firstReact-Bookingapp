@@ -25,6 +25,7 @@
     "react-social-icons": "^5.1.1",
     "reactjs-popup": "^2.0.4",
     "stripe": "^8.150.0",
+    "update": "^0.7.4",
     "web-vitals": "^1.1.1"
   },
   "scripts": {

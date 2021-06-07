@@ -27,7 +27,7 @@ function handleOnchange(e) {
 const handleOnSubmit = async (e) => {
      e.preventDefault();
   await axios
-  .post('https://bookingtove.herokuapp.com/auth/local', {
+  .post('http://localhost:1337/auth/local', {
     identifier: formValues.email,
     password: formValues.password,
   })
@@ -35,6 +35,9 @@ const handleOnSubmit = async (e) => {
     setUser(JSON.stringify({JWT: response.data.jwt, email: response.data.user.email}))
     setUsername(response.data.user.username)
     setLogin("login")
+    
+    localStorage.setItem("role", response.data.user.role.name);
+    console.log("role",response.data.user.role.name)
 
     localStorage.setItem("id", response.data.user.id)
     console.log("id", response.data.user.id );

@@ -18,7 +18,7 @@ function CardList() {
       setWaiting(true);
       //setLoading(true)
       const response = await axios.get(
-        `https://bookingtove.herokuapp.com/products?_limit=${loading}`
+        `http://localhost:1337/products?_limit=${loading}`
       );
      
       console.log(response.data.img);

@@ -44,6 +44,8 @@ function Navbar(){
               
             <Link to ="./MyBookings" className="px-3 py-8"> My Bookings 
             </Link>
+
+            
             <Link to ="./AddProduct" className="px-3 py-8">Add products
             </Link>
               <Link to="./LoginForm" className="px-3 py-8" onClick={() => {

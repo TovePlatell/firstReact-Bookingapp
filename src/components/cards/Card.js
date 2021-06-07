@@ -15,6 +15,7 @@ function Card({ productName, productId, description, location, price, image }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [editProduct, setEditProduct] = useState({})
+  const admin = localStorage.getItem("role")
 
   const [modalIsOpen,setIsOpen] = React.useState(false);
   
@@ -48,18 +49,24 @@ function Card({ productName, productId, description, location, price, image }) {
 
   return (
     <>
+    
      {modalIsOpen && 
      (
       <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           contentLabel="Edit Product"
+          ariaHideApp={false}
         >
 
         <button onClick={closeModal}>close</button>
           <form onSubmit={handleSubmit}>
           <label htmlFor="name">Name: </label>
             <input onChange={handleChange} className="px-2 py-1 border" name="name" value={editProduct.name}/>
+            <label htmlFor="name">Price: </label>
+            <input onChange={handleChange} className="px-2 py-1 border" name="price" value={editProduct.price}/>
+            <label htmlFor="name">Description: </label>
+            <input onChange={handleChange} className="px-2 py-1 border" name="description" value={editProduct.description}/>
             <button>Update Product</button>
           </form>
         </Modal>
@@ -148,20 +155,44 @@ function Card({ productName, productId, description, location, price, image }) {
                     className="text-sm text-gray-600 align-baseline pinline-block hover:text-gray-800"
                   >
                     Book
+
                   </button>
-                  <p
+                  
+           
+                 
+          
+                </div>
+              </Link>
+              
+            )}
+
+            {admin === "admin" ? (
+            <div className="flex justify-between">
+                  <button
                     onClick={handleEdit}
                     className="text-sm text-gray-600 align-baseline pinline-block hover:text-gray-800"
                   >
-                    Edit
-                  </p>
-                </div>
-              </Link>
-            )}
+                    Edit 
+                  </button>
+                  
+              </div>
+
+              ) : (
+              <span></span>
+              )
+               }
+                  
           </form>
+        
         </div>
       </div>
+      
+   
+
+                
     </>
+
+                            
   );
 }
 

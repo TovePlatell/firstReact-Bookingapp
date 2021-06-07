@@ -87,8 +87,7 @@ function MyBookings() {
 
                     <button value={booking.id} onClick={handleDelete} className="px-3 py-2 mt-6 text-xs bg-gray-300 rounded text-grey font-xs"> Cancel this booking</button>
 
-                    <button value={booking.id} onClick={handleDelete} className="px-3 py-2 pl-4 mt-6 text-xs bg-gray-300 rounded text-grey font-xs"> change this booking</button>
-
+                
                     </form>
                   </div>
                 </div>

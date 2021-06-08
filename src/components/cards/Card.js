@@ -1,78 +1,139 @@
 import React, { useState } from "react";
-import axios from "axios"
-import Modal from "react-modal"
+import axios from "axios";
+import Modal from "react-modal";
 
 import { getUser } from "../utils/user";
 import { Link } from "react-router-dom";
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+//import DatePicker from "react-datepicker";
+//import "react-datepicker/dist/react-datepicker.css";
 
-import FormatPrice from "../utils/formatPrice"
+//import FormatPrice from "../utils/formatPrice"
 
-function Card({ productName, productId, description, location, price, image }) {
+function Card({
+  productName,
+  productId,
+  description,
+  location,
+  price,
+  image,
+
+}) {
   const [bookClicked, setBookClicked] = React.useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [editProduct, setEditProduct] = useState({})
-  const admin = localStorage.getItem("role")
+  // const [selectedDate, setSelectedDate] = useState(new Date());
+  // const [endDate, setEndDate] = useState(new Date());
+  const [editProduct, setEditProduct] = useState({});
 
-  const [modalIsOpen,setIsOpen] = React.useState(false);
-  
+  const admin = localStorage.getItem("role");
+
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+
+
   function openModal() {
     setIsOpen(true);
   }
 
-
-  function closeModal(){
+  function closeModal() {
     setIsOpen(false);
   }
 
   const handleEdit = async (e) => {
-    e.preventDefault()
-    
-    await axios.get(`http://localhost:1337/products/${productId}`).then((res) => {
-      setEditProduct(res.data)
-      openModal()
-    })
-  } 
+    e.preventDefault();
 
-  const handleChange = ({target}) => {
-    const {name, value} = target;
-    setEditProduct({...editProduct, [name]:value})
-    
-  }
+    await axios
+      .get(`http://localhost:1337/products/${productId}`)
+      .then((res) => {
+        setEditProduct(res.data);
+        openModal();
+      });
+  };
+
+  const handleChange = ({ target }) => {
+    const { name, value } = target;
+    setEditProduct({ ...editProduct, [name]: value });
+  };
 
   const handleSubmit = async () => {
-    await axios.put(`http://localhost:1337/products/${productId}`, editProduct)
-  }
+    await axios.put(`http://localhost:1337/products/${productId}`, editProduct);
+  };
 
   return (
     <>
-    
-     {modalIsOpen && 
-     (
-      <Modal
+      {modalIsOpen && (
+        <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           contentLabel="Edit Product"
           ariaHideApp={false}
         >
-
-        <button onClick={closeModal}>close</button>
-          <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Name: </label>
-            <input onChange={handleChange} className="px-2 py-1 border" name="name" value={editProduct.name}/>
-            <label htmlFor="name">Price: </label>
-            <input onChange={handleChange} className="px-2 py-1 border" name="price" value={editProduct.price}/>
-            <label htmlFor="name">Description: </label>
-            <input onChange={handleChange} className="px-2 py-1 border" name="description" value={editProduct.description}/>
-            <button>Update Product</button>
-          </form>
+          <div className="flex flex-col h-screen bg-gray-100">
+            <div className="grid mx-2 my-20 place-items-center sm:my-auto">
+              <div className="w-11/12 p-12 px-6 py-10 bg-white rounded-lg shadow-md sm:w-8/12 md:w-6/12 lg:w-5/12 2xl:w-4/12 sm:px-10 sm:py-6 lg:shadow-lg">
+                <p className="text-lg font-bold text-center text-grey">
+                  Update products
+                </p>
+                <form onSubmit={handleSubmit} classname="mt-10">
+                  <label
+                    htmlFor="name"
+                    className="block text-xs font-semibold text-gray-600 uppercase"
+                  >
+                    Name:{" "}
+                  </label>
+                  <input
+                    onChange={handleChange}
+                    className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+                    name="name"
+                    value={editProduct.name}
+                  />
+                  <label
+                    htmlFor="name"
+                    className="block text-xs font-semibold text-gray-600 uppercase"
+                  >
+                    Price:{" "}
+                  </label>
+                  <input
+                    onChange={handleChange}
+                    className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+                    name="price"
+                    value={editProduct.price}
+                  />
+                  <label
+                    htmlFor="name"
+                    className="block text-xs font-semibold text-gray-600 uppercase"
+                  >
+                    Description:{" "}
+                  </label>
+                  <input
+                    onChange={handleChange}
+                    className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+                    name="description"
+                    value={editProduct.description}
+                  />
+                  <label
+                    htmlFor="name"
+                    className="block text-xs font-semibold text-gray-600 uppercase"
+                  >
+                    Image:{" "}
+                  </label>
+                  <input
+                    onChange={handleChange}
+                    className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+                    type="file"
+                    name="file"
+                    value={editProduct.image}
+                  />
+                  <button className="mt-8 ml-36 text-md sm:flex sm:flex-wrap sm:mb-4">
+                    Finish
+                  </button>
+                  <button onClick={closeModal}>x</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </Modal>
-     )
-     }
-      <div className="container flex overflow-hidden rounded-lg shadow mx-mx-auto -w-md mx-h-full xl:max-w-3xl">
+      )}
+      <div className="container flex my-10 mb-10 overflow-hidden rounded-lg shadow mx-mx-auto -w-md mx-h-full xl:max-w-3xl">
         <div className="relative hidden h-full xl:block xl:w-1/2">
           <img
             className="absolute object-cover w-full h-auto"
@@ -93,41 +154,6 @@ function Card({ productName, productId, description, location, price, image }) {
               {description}
             </p>
 
-            <DatePicker
-              selected={selectedDate}
-              onChange={(date) => {
-                setSelectedDate(date);
-                console.log("AA", date);
-              }}
-              placeholderText="choose a startdate"
-              dateFormat="dd-MM-yyy"
-              minDate={new Date()}
-              startDate={selectedDate}
-              selectsStart
-              isClearable
-              showYearDropdown
-              scrollableMonthYearDropdown
-              className="border-4 border-double border-light-blue-500"
-            />
-
-            {/* <div>Selected={selectedDate ? selectedDate.toString() : null}</div>
-          <div>Selected ={endDate ? endDate.toString() : null}</div> */}
-
-            <DatePicker
-              selected={endDate}
-              onChange={(date) => setEndDate(date)}
-              placeholderText="choose an enddate"
-              dateFormat="dd-MM-yyyy"
-              selectsEnd
-              startDate={selectedDate}
-              minDate={selectedDate}
-              endDate={endDate}
-              isClearable
-              showYearDropdown
-              scrollableMonthYearDropdown
-              className="border-4 border-double border-light-blue-500"
-            />
-
             <p className="block mb-2 text-sm font-semibold text-gray-700">
               <strong>Located:</strong>
               {location}
@@ -135,8 +161,12 @@ function Card({ productName, productId, description, location, price, image }) {
 
             <p className="block mb-2 text-sm font-semibold text-gray-700">
               <strong>Price:</strong>
-              {FormatPrice(price)}
+              {price}
             </p>
+
+          
+           <input className="mt-8" type="date" />
+           <input className="" type="date" />
 
             {getUser().length === 0 ? (
               <div className="text-sm font-semibold text-gray-700">
@@ -144,55 +174,45 @@ function Card({ productName, productId, description, location, price, image }) {
                 <Link to="./LoginForm">Login to book this</Link>
               </div>
             ) : (
+              
               <Link
                 to={`/UserPage?name=${productName}&price=${price}&location=${location}&description=${description}&id=${productId}`}
               >
-                <div className="flex justify-between">
+              
+                    <div className="justify-center">
                   <button
                     onClick={() => {
                       setBookClicked(!bookClicked);
                     }}
-                    className="text-sm text-gray-600 align-baseline pinline-block hover:text-gray-800"
+                    className="mt-10 text-sm text-gray-600 hover:text-gray-800"
                   >
                     Book
-
                   </button>
-                  
-           
-                 
-          
-                </div>
+                  </div>
+             
               </Link>
-              
             )}
 
             {admin === "admin" ? (
-            <div className="flex justify-between">
-                  <button
-                    onClick={handleEdit}
-                    className="text-sm text-gray-600 align-baseline pinline-block hover:text-gray-800"
-                  >
-                    Edit 
-                  </button>
-                  
-              </div>
-
-              ) : (
+             
+                <button
+                  onClick={handleEdit}
+                  className="mt-4 text-sm text-gray-600 align-baseline pinline-block hover:text-gray-800"
+                >
+                  Edit
+                </button>
+             
+                
+             
+            ) : (
               <span></span>
-              )
-               }
-                  
+            )}
+
+          
           </form>
-        
         </div>
       </div>
-      
-   
-
-                
     </>
-
-                            
   );
 }
 

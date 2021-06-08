@@ -1,6 +1,6 @@
 import axios from "axios"
 import React, {useState} from "react"
-import {Link} from "react-router-dom"
+
 
 function AddProduct(){
 
@@ -14,7 +14,7 @@ function AddProduct(){
 const [formValues, setFormValues] = useState(initialValues);
 const [fileData, setFileData] = useState();
 const [message, setMessage]= useState("")
-const admin = localStorage.getItem("role")
+//const admin = localStorage.getItem("role")
 
 function handleOnChange(e) {
 
@@ -79,7 +79,7 @@ return(
     <>
 
     
-{admin === "admin" ? (
+
   <>
 <p className="text-lg font-bold text-center text-grey">Add products</p>
 
@@ -179,15 +179,7 @@ return(
     </div>
     </>
 
-    ) : (
 
-      <div>
-        <Link to = "./"> 
-        You´re are not admin</Link>
-      </div>
-      
-    )
-}
 
 
     </>

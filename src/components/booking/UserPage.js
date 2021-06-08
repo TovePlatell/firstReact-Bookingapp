@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 
+
 import { useLocation, useHistory } from "react-router-dom";
 
 function UserPage() {
@@ -42,6 +43,8 @@ function UserPage() {
     );
   }
 
+
+
   let query = useQuery();
 
   const bookingValues = {
@@ -62,9 +65,11 @@ function UserPage() {
       phonenumber: formValues.phonenumber,
       product: query.get("id"),
       users_permissions_user: localStorage.getItem("id"),
-    });
+     
+    });  
 
     localStorage.setItem("BookingID", response.data.id);
+ 
 
     history.push("/Paynow");
   }
@@ -90,6 +95,7 @@ function UserPage() {
               <Price Price={query.get("price")} />
               <Description Description={query.get("description")} />
               <Location location={query.get("location")} />
+            
 
               <input
                 type="text"

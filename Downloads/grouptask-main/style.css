@@ -1,0 +1,83 @@
+/* 
+Theme Name: Grupp 3: Happy Heads
+Author: Noreen Fuad, Adam Kollberg, Thomas Olsson, Tove Platell
+Version: 1.0
+*/
+
+
+html{
+    margin:0!important;
+}
+body
+{
+text-align: left;
+}
+#sidebar_right
+{
+border-left: 1px solid black;
+}
+.header-logo {
+    text-align: center;
+}
+.header-logo img {
+    height: 45px;
+}
+.jumbotron h1, .jumbotron .h1 {
+    font-size: 35px;
+    color: #aaa;
+    text-align: center;
+}
+
+.title
+{
+font-size: 11pt;
+font-family: verdana;
+font-weight: bold;
+}
+#main {
+    margin-bottom: 50px;
+}
+a {
+    color: #34393e;
+    text-decoration: none;
+}
+.woocommerce ul.products li.product .price {
+    color: #77a464;
+    display: block;
+    font-weight: 400;
+    margin-bottom: .5em;
+    font-size: 1.2em;
+}
+.woocommerce ul.products li.product .woocommerce-loop-product__title{
+    font-size:1.5em;
+    }
+.woocommerce nav.woocommerce-pagination ul{
+    border:none;
+    }
+    .woocommerce .woocommerce-pagination ul.page-numbers li, .woocommerce-page .woocommerce-pagination ul.page-numbers li {
+    display: inline-block;
+    margin: 5px;
+}
+.woocommerce nav.woocommerce-pagination ul li span.current {
+    background: #337ab7;
+    color: #fff;
+    padding: 12px;
+}
+.woocommerce-pagination ul.page-numbers a.page-numbers {
+    color: #444;
+    padding: 12px;
+    margin: 0px;
+    background: #ddd;
+}
+#footer {
+    width: 100%;
+    border-top: 1px #a2a2a2 solid;
+    text-align: center;
+    padding: 40px;
+    background: #eee;
+}
+#footer h1 {
+    color: #aaa;
+    font-size: 30px;
+    font-weight: 500;
+}
